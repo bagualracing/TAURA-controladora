@@ -1,0 +1,26 @@
+Portas do Arduino /Atmega328p  e suas funções
+
+Porta			Função
+
+8/PB0			
+9/PB1/OC1A		
+10/PB2/OC1B		
+11/PB3			
+12/PB4			
+13/PB5			
+
+A0/PC0 (PCINT8)		Hall A (Amarelo) 
+A1/PC1 (PCINT9)		Hall B (Azul)
+A2/PC2 (PCINT10)	Hall C (Verde)
+A3/PC3			Sensor de corrente
+A4/PC4			Sensor de freio
+A5/PC5
+
+0/PD0			
+1/PD1			
+2/PD2			HIGH Fase Amarelo (A)
+3/PD3			LOW Fase Amarelo (A)
+4/PD4			HIGH Fase Azul (B)
+5/PD5			LOW Fase Azul (B)
+6/PD6			HIGH Fase Verde (C)
+7/PD7			LOW Fase Verde (C)
