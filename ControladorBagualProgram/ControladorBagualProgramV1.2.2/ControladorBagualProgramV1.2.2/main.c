@@ -27,15 +27,15 @@ char k = 0;
 /*
 Programa feito esperando a seguinte montagem do sistema:
 
-- Sensores de efeito Hall nas portas PC0 (fase 1), PC1 (fase 2), PC2 (fase 3);
+- Sensores de efeito Hall nas portas PC0 (fase 0), PC1 (fase 1), PC2 (fase 2);
 
 - Ponte de Fets ativada como:
-* Low fase 1:  PD0
-* High fase 1: PD1
-* Low fase 2:  PD2
-* High fase 2: PD3
-* Low fase 3:  PD4
-* High fase 3: PD5
+* High fase 0: PD2
+* Low fase 0:  PD3
+* High fase 1: PD4
+* Low fase 1:  PD5
+* High fase 2: PD6
+* Low fase 2:  PD7
 */
 
 void debug(char on){
@@ -58,7 +58,7 @@ ISR(TIMER1_COMPA_vect){
 	
 	if(s_AnalogValue != 0)
 	{
-		PORTD |= s_phaseTurnedOff;                                  //Seta .os valores LOW da ponte H
+		//PORTD |= s_phaseTurnedOff;                                  //Seta .os valores LOW da ponte H
 		switch(s_phaseTurnedOff)
 		{
 			case 1:
@@ -131,8 +131,8 @@ ISR (PCINT1_vect)
 					{
 						PhaseToSetFloat = 2; // A B C
 					}                        // 0 0 1
-					s_phaseTurnedOn &= ~(1 << (PhaseToSetFloat));		//indica que a fase referente ao sensor hall deve ir para Float
-					s_phaseTurnedOn |= (1 << (i));				//indica que a fase referente ao sensor hall deve ir para High
+					s_phaseTurnedOff &= ~(1 << (PhaseToSetFloat));		//indica que a fase referente ao sensor hall deve ir para Float
+					s_phaseTurnedOff |= (1 << (i));				//indica que a fase referente ao sensor hall deve ir para High
 				}
 				else
 				{
@@ -141,8 +141,8 @@ ISR (PCINT1_vect)
 					{
 						PhaseToSetFloat = 2;
 					}
-					s_phaseTurnedOff  &= ~(1 << (PhaseToSetFloat));		//indica que a fase referente ao sensor hall deve ir para Float
-					s_phaseTurnedOff  |= (1 << (i));			//indica que a fase referente ao sensor hall deve ir para High
+					s_phaseTurnedOn  &= ~(1 << (PhaseToSetFloat));		//indica que a fase referente ao sensor hall deve ir para Float
+					s_phaseTurnedOn  |= (1 << (i));			//indica que a fase referente ao sensor hall deve ir para High
 					
 				}
 			}
